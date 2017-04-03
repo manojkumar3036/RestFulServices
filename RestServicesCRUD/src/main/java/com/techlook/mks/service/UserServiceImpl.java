@@ -15,6 +15,9 @@ public class UserServiceImpl implements UserService{
 		userDAO.addUser(user);
 		
 	}
+	public User getUserById(int id) {
+		return userDAO.getUserById(id);
+	}
 	
 
 }

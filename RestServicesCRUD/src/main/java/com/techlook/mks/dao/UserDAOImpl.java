@@ -22,4 +22,10 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 
+	public User getUserById(int id) {
+		Session session=sessionFactory.openSession();
+		User user=(User) session.get(User.class, id);
+		return user;
+	}
+
 }
