@@ -15,28 +15,38 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public void addUser(User user) {
-		Session session=sessionFactory.openSession();
+		Session session = sessionFactory.openSession();
 		session.save(user);
 		session.flush();
 		session.close();
-		
-		
+
 	}
 
 	public User getUserById(int id) {
-		Session session=sessionFactory.openSession();
-		User user=(User) session.get(User.class, id);
+		Session session = sessionFactory.openSession();
+		User user = (User) session.get(User.class, id);
 		return user;
 	}
 
 	public List<User> getAllUsers() {
-		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from User");
-		List<User> users=query.list();
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from User");
+		List<User> users = query.list();
+
+		session.close();
 		return users;
-	
+
+	}
+
+	public User deleteUserById(int id) {
+		Session session = sessionFactory.openSession();
+		User user = (User) session.get(User.class, id);
+		session.delete(user);
+		session.flush();
+		session.close();
+		return null;
 	}
 
 }
