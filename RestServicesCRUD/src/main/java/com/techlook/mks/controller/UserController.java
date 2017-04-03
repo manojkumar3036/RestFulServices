@@ -1,5 +1,7 @@
 package com.techlook.mks.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +34,14 @@ public class UserController {
 	public @ResponseBody User getSingleUser(@PathVariable("id") int id) {
 		User user = userService.getUserById(id);
 		return user;
+	}
+	
+	@RequestMapping(value = "/user/getalluser", method = RequestMethod.GET)
+	public @ResponseBody List<User> getAllUsers()
+	{
+		List<User> users=userService.getAllUsers();
+		return users;
+		
 	}
 
 }

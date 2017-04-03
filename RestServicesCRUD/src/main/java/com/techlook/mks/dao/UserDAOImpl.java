@@ -1,5 +1,8 @@
 package com.techlook.mks.dao;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,14 @@ public class UserDAOImpl implements UserDAO {
 		Session session=sessionFactory.openSession();
 		User user=(User) session.get(User.class, id);
 		return user;
+	}
+
+	public List<User> getAllUsers() {
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery("from User");
+		List<User> users=query.list();
+		return users;
+	
 	}
 
 }
